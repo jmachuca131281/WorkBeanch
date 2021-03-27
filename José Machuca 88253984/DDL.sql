@@ -1,0 +1,36 @@
+CREATE DATABASE CONCESIONARIO; 
+
+USE CONCESIONARIO;
+
+CREATE TABLE clientes(
+	id INT NOT NULL IDENTITY(1,1),
+	ni VARCHAR(20) NOT NULL,
+	nombre VARCHAR(30) NOT NULL,
+	direccion VARCHAR(50) NOT NULL,
+	ciudad VARCHAR(20) NOT NULL,
+	telefono VARCHAR(15) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE vehiculos(
+	id INT NOT NULL IDENTITY(1,1),
+	matricula VARCHAR(30) NOT NULL,
+	marca VARCHAR(30) NOT NULL,
+	modelo VARCHAR(30) NOT NULL,
+	color VARCHAR(10) NOT NULL,
+	precio INT NOT NULL,
+	id_Cliente INT NOT NULL,
+	PRIMARY KEY (id),
+	CONSTRAINT fkClienteVehiculo FOREIGN KEY (id_Cliente) REFERENCES clientes (id)
+); 
+
+CREATE TABLE revisiones(
+	codigo INT NOT NULL IDENTITY(1,1),
+	matricula VARCHAR(30) NOT NULL,
+	filtro VARCHAR(20) NOT NULL,
+	aceite VARCHAR(20) NOT NULL,
+	frenos VARCHAR(20) NOT NULL,
+	id_Vehiculo INT NOT NULL,
+	PRIMARY KEY (codigo),
+	CONSTRAINT fkVehiculoRevision FOREIGN KEY (id_Vehiculo) REFERENCES vehiculos (id)
+);

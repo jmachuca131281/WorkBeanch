@@ -1,0 +1,143 @@
+
+
+
+/*STORED PROCEDURE CLIENTE*/
+CREATE PROCEDURE CONSULTAR_CLIENTES
+AS
+BEGIN
+	SELECT * FROM clientes;
+END
+------------------------------------------------------------------------
+
+CREATE PROC INSERTAR_CLIENTES(
+	@ni VARCHAR(20),
+	@nombre VARCHAR(30),
+	@direccion VARCHAR(50),
+	@ciudad VARCHAR(20),
+	@telefono VARCHAR(15)
+)
+AS
+BEGIN
+	INSERT INTO clientes VALUES (@ni, @nombre, @direccion, @ciudad, @telefono);
+END
+---------------------------------------------------------------------------
+
+CREATE PROCEDURE BORRAR_CLIENTES
+AS
+BEGIN
+	DELETE FROM clientes WHERE ni = ni;
+END
+
+/* INSERT CLIENTES */
+INSERT INTO clientes values 
+(1, 'NOMBRE#1', 'DIRECCIÓN#1', 'CIUDAD#1', 'TELÉFONO#1'),
+(2, 'NOMBRE#2', 'DIRECCIÓN#2', 'CIUDAD#2', 'TELÉFONO#2'),
+(3, 'NOMBRE#3', 'DIRECCIÓN#3', 'CIUDAD#3', 'TELÉFONO#3'),
+(4, 'NOMBRE#4', 'DIRECCIÓN#4', 'CIUDAD#4', 'TELÉFONO#4'),
+(5, 'NOMBRE#5', 'DIRECCIÓN#5', 'CIUDAD#5', 'TELÉFONO#5'),
+(6, 'NOMBRE#6', 'DIRECCIÓN#6', 'CIUDAD#6', 'TELÉFONO#6'),
+(7, 'NOMBRE#7', 'DIRECCIÓN#6', 'CIUDAD#7', 'TELÉFONO#7'),
+(8, 'NOMBRE#8', 'DIRECCIÓN#7', 'CIUDAD#8', 'TELÉFONO#8'),
+(9, 'NOMBRE#9', 'DIRECCIÓN#8', 'CIUDAD#9', 'TELÉFONO#9'),
+(10, 'NOMBRE#10', 'DIRECCIÓN#9', 'CIUDAD#10', 'TELÉFONO#10');
+
+/* EXEC STORED PROCEDURE CLIENTES*/
+EXEC CONSULTAR_CLIENTES;
+EXEC INSERTAR_CLIENTES 1234567890, 'NOMBRE#', 'DIRECCIÓN#', 'CIUDAD#', 'TELÉFONO#';
+EXEC BORRAR_CLIENTES 1234567890;
+
+
+
+
+
+
+/* STORED PROCEDURE VEHICULOS*/
+CREATE PROCEDURE CONSULTAR_VEHICULOS
+AS
+BEGIN
+	SELECT * FROM vehiculos;
+END
+------------------------------------
+CREATE PROCEDURE INSERTAR_VEHICULOS(
+	@matricula VARCHAR(30),
+	@marca VARCHAR(30),
+	@modelo VARCHAR(30),
+	@color VARCHAR(10),
+	@precio INT,
+	@id_Cliente INT
+)
+AS
+BEGIN
+	INSERT INTO vehiculos VALUES (@matricula, @marca, @modelo, @color, @precio, @id_Cliente);
+END
+------------------------------------------------
+CREATE PROCEDURE BORRAR_VEHICULOS(@ INT, @ INT)
+AS
+BEGIN
+	DELETE FROM TABLE_NAME WHERE CONDITION;
+END
+
+/* INSERT VEHICULOS */
+INSERT INTO vehiculos VALUES
+('QWE-1', 'HONDA1', 'CIVIC1', 'GRIS1', '300001', 1),
+('QWE-2', 'HONDA2', 'CIVIC2', 'GRIS2', '300002', 2),
+('QWE-3', 'HONDA3', 'CIVIC3', 'GRIS3', '300003', 3),
+('QWE-4', 'HONDA4', 'CIVIC4', 'GRIS4', '300004', 4),
+('QWE-5', 'HONDA5', 'CIVIC5', 'GRIS5', '300005', 5),
+('QWE-6', 'HONDA6', 'CIVIC6', 'GRIS6', '300006', 6),
+('QWE-7', 'HONDA7', 'CIVIC7', 'GRIS7', '300007', 7),
+('QWE-8', 'HONDA8', 'CIVIC8', 'GRIS8', '300008', 8),
+('QWE-9', 'HONDA9', 'CIVIC9', 'GRIS9', '300009', 9),
+('QWE-10', 'HONDA10', 'CIVIC10', 'GRIS10', '3000010', 10);
+
+/* STORED PROCEDURE REVISIONES*/
+CREATE PROCEDURE CONSULTAR_REVISIONES
+AS
+BEGIN
+	SELECT * FROM revisiones;
+END
+--------------------------------------------
+CREATE PROCEDURE INSERTAR_REVISIONES(
+	@matricula VARCHAR(30),
+	@filtro VARCHAR(20),
+	@aceite VARCHAR(20),
+	@frenos VARCHAR(20),
+	@id_Vehiculos INT
+)
+AS
+BEGIN
+	INSERT INTO revisiones VALUES (@matricula, @filtro, @aceite, @frenos, @id_Vehiculos);
+END
+-------------------------------------------
+CREATE PROCEDURE BORRAR_REVISIONES
+AS
+BEGIN
+	DELETE FROM revisiones WHERE codigo = 1;
+END
+
+/* INSERT REVISIONES */
+INSERT INTO revisiones VALUES
+('QWE-1','SI', 'NO', 'SI', 1),
+('QWE-2','SI', 'NO', 'SI', 2),
+('QWE-3','SI', 'NO', 'SI', 3),
+('QWE-4','SI', 'NO', 'SI', 4),
+('QWE-5','SI', 'NO', 'SI', 5),
+('QWE-6','SI', 'NO', 'SI', 6),
+('QWE-7','SI', 'NO', 'SI', 7),
+('QWE-8','SI', 'NO', 'SI', 8),
+('QWE-9','SI', 'NO', 'SI', 9),
+('QWE-10','SI', 'NO', 'SI', 10);
+
+
+
+
+
+/* EXEC STORED PROCEDURE VEHICULOS*/
+EXEC CONSULTAR_VEHICULOS;
+EXEC INSERTAR_VEHICULOS 'QWE-123', 'HONDA', 'CIVIC', 'GRIS', '30000', 1;
+EXEC BORRAR_VEHICULOS;
+
+/* EXEC STORED PROCEDURE REVISIONES*/
+EXEC CONSULTAR_REVISIONES;
+EXEC INSERTAR_REVISIONES 'QWE-123','SI', 'NO', 'SI', 1;
+EXEC BORRAR_REVISIONES;
